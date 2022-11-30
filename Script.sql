@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS singers (
+	singer_id SERIAL PRIMARY KEY,
+	name ARCHAR(60) NOT NULL
+);
