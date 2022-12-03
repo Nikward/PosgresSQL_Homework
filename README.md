@@ -1,2 +1,2 @@
 # PostgresSQL_Homework
-![diagram]([http://baidu.com/pic/doge.png](https://github.com/Nikward/PostgresSQL_Homework/blob/main/diagrambd.png?raw=true))
+![diagram](https://raw.githubusercontent.com/Nikward/PostgresSQL_Homework/main/diagrambd.png)
