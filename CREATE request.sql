@@ -1,39 +1,39 @@
-CREATE TABLE IF NOT EXISTS Singers (
-	id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS singer (
+	singer_id SERIAL PRIMARY KEY,
 	name VARCHAR(60) NOT NULL
 );
-CREATE TABLE IF NOT EXISTS Genres (
-	id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS genre (
+	genre_id SERIAL PRIMARY KEY,
 	name VARCHAR(60) NOT NULL
 );
-CREATE TABLE IF NOT EXISTS SingersGenres(
-	singer_id INTEGER REFERENCES Singers(id),
-	genre_id INTEGER REFERENCES Genres(id),
-	CONSTRAINT pk_sg PRIMARY KEY (singer_id, genre_id)
+CREATE TABLE IF NOT EXISTS singers_genres(
+	singer_id INTEGER REFERENCES singer(singer_id),
+	genre_id INTEGER REFERENCES genre(genre_id),
+	CONSTRAINT pk_singergenre PRIMARY KEY (singer_id, genre_id)
 );
-CREATE TABLE IF NOT EXISTS Albums(
-	id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS album(
+	album_id SERIAL PRIMARY KEY,
 	name VARCHAR(60) NOT NULL,
 	year INTEGER NOT NULL
 );
-CREATE TABLE IF NOT EXISTS SingersAlmums(
-	Singer_id INTEGER REFERENCES Singers(id),
-	Albums_id INTEGER REFERENCES Albums(id),
-	CONSTRAINT pk_sa PRIMARY KEY (Singer_id, Albums_id)
+CREATE TABLE IF NOT EXISTS singer_album(
+	singer_id INTEGER REFERENCES singer(singer_id),
+	album_id INTEGER REFERENCES album(album_id),
+	CONSTRAINT pk_singlealbum PRIMARY KEY (singer_id, album_id)
 );
-CREATE TABLE IF NOT EXISTS Tracks(
-	id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS track(
+	track_id SERIAL PRIMARY KEY,
 	name VARCHAR(60) NOT NULL,
-	duration VARCHAR(80),
-	albom_id INTEGER REFERENCES Albums(id)
+	duration numeric(3,2) NOT NULL,
+	albom_id INTEGER REFERENCES album(album_id)
 );
-CREATE TABLE IF NOT EXISTS Collections(
-	id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS collection(
+	collection_id SERIAL PRIMARY KEY,
 	name VARCHAR(60) NOT NULL,
-	year INTEGER
+	year INTEGER NOT NULL
 );
-CREATE TABLE IF NOT EXISTS CollectionTracks(
-	collection_id INTEGER REFERENCES Collections(id),
-	track_id INTEGER REFERENCES Tracks(id),
-	CONSTRAINT pk_ct PRIMARY KEY (collection_id, track_id)
+CREATE TABLE IF NOT EXISTS collection_track(
+	collection_id INTEGER REFERENCES collection(collection_id),
+	track_id INTEGER REFERENCES track(track_id),
+	CONSTRAINT pk_collectiontrack PRIMARY KEY (collection_id, track_id)
 );
